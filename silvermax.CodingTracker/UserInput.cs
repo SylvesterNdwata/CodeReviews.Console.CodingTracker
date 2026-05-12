@@ -1,5 +1,4 @@
 ﻿using Spectre.Console;
-using silvermax.CodingTracker;
 using System.Globalization;
 
 namespace silvermax.CodingTracker;
@@ -7,8 +6,7 @@ namespace silvermax.CodingTracker;
 internal class UserInput
 {
     private readonly Validation validator = new();
-    private readonly CodingController _controller = new();
-    public void GetUserInput()
+    public (string date, string startTime, string endTime, string duration) GetUserInput()
     {
         string date = AnsiConsole.Prompt(
             new TextPrompt<string>("Please input the [green]date[/] (Format: dd-mm-yy): ")
@@ -49,11 +47,6 @@ internal class UserInput
 
         AnsiConsole.MarkupLine($"Started: {startTime}, Ended: {endTime}, Duration: {duration.TotalHours:F2} hours");
 
-        _controller.AddToDb(parsedDate.ToString("dd-MMM-yyyy"), startTime, endTime, $"{duration.TotalHours:F2}");
-
-        AnsiConsole.MarkupLine("[green]Session successfully saved[/]");
-
-        AnsiConsole.MarkupLine("Press Any Key to continue...");
-        Console.ReadKey();
+        return (parsedDate.ToString("dd-MMM-yyyy"), startTime, endTime, $"{duration.TotalHours:F2}");
     }
 }

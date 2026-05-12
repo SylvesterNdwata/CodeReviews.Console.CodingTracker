@@ -7,6 +7,8 @@ internal class Enums
         StartSession,
         AddSession,
         ViewSessions,
+        UpdateSession,
+        DeleteSession,
         CloseApp
     }
 }

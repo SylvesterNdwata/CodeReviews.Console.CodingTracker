@@ -35,6 +35,14 @@ internal class UserInterface
                     _controller.ShowSessions();
                     break;
 
+                case Menu.DeleteSession:
+                    _controller.DeleteSession();
+                    break;
+
+                case Menu.UpdateSession:
+                    _controller.UpdateSession();
+                    break;
+
                 case Menu.CloseApp:
                     openApp = false;
                     break;
